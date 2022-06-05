@@ -15,5 +15,6 @@ import java.util.Set;
 public class StatusIn {
     private Integer id ;
     private String name ;
+    private Integer uutien ;
     private Set<User> users ;
 }
