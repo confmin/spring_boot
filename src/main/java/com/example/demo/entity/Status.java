@@ -24,7 +24,6 @@ public class Status {
     @Column
     private Integer uutien ;
     @OneToMany(cascade = CascadeType.ALL , mappedBy = "status")
-    @JsonIgnore
     private Set<User> users ;
 
 }

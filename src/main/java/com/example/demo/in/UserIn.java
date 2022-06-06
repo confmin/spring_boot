@@ -16,6 +16,7 @@ import java.util.Set;
 public class UserIn {
     private Integer id ;
     private  String name ;
+    private Integer id_status ;
     private Integer uutien ;
    private Status status   ;
 }

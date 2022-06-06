@@ -3,6 +3,9 @@ package com.example.demo.mapper;
 import com.example.demo.dto.UserDto;
 import com.example.demo.entity.User;
 import com.example.demo.in.UserIn;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 public class UserMapper {
     public static UserDto map(User user)
@@ -22,4 +25,6 @@ public class UserMapper {
         user.setStatus(userIn.getStatus());
         return user ;
     }
+
+
 }

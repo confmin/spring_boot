@@ -16,7 +16,10 @@ public class StatusMapper {
     public static Status map(StatusIn statusIn)
     {
         Status  status = new Status();
-        status.setId(statusIn.getId());
+
+        if (statusIn.getId() != null){
+            status.setId(statusIn.getId());
+        }
         status.setName(statusIn.getName());
         status.setUutien(statusIn.getUutien());
         return status ;

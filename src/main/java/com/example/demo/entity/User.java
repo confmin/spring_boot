@@ -14,7 +14,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
 @Table(name = "users")
 public class User {
     @Id
@@ -24,7 +24,6 @@ public class User {
     private String name ;
     @JoinColumn(name = "id_status", referencedColumnName = "id")
     @ManyToOne(cascade = CascadeType.ALL)
-    @JsonIgnore
     private Status status ;
 
 }
