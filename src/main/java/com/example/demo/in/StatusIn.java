@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -14,7 +15,6 @@ import java.util.Set;
 @Getter
 public class StatusIn {
     private Integer id ;
-    private String name ;
-    private Integer uutien ;
-    private Set<User> users ;
+    private String status ;
+    private Integer level ;
 }

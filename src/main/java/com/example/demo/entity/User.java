@@ -8,13 +8,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Time;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-
+@JsonIgnoreProperties
 @Table(name = "users")
 public class User {
     @Id
@@ -22,8 +23,13 @@ public class User {
     private Integer id ;
     @Column
     private String name ;
-    @JoinColumn(name = "id_status", referencedColumnName = "id")
-    @ManyToOne(cascade = CascadeType.ALL)
+
+    @ManyToOne
+    @JoinColumn(name = "id_status")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Status status ;
+
+    @Column
+    private Time time ;
 
 }

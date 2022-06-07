@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -16,7 +18,6 @@ import java.util.Set;
 public class UserIn {
     private Integer id ;
     private  String name ;
-    private Integer id_status ;
-    private Integer uutien ;
-   private Status status   ;
+   private Integer status ;
+
 }

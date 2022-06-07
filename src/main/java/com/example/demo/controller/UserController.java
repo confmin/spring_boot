@@ -10,11 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
-@RequestMapping(name ="/api/user" )
+@RequestMapping("/api/user" )
 @CrossOrigin(origins = "*", allowedHeaders = "*")
-
 public class UserController {
     @Autowired
     private UserService userService ;
@@ -27,11 +27,26 @@ public class UserController {
     @PostMapping
     public ResponseEntity<?> add(@RequestBody UserIn userIn)
     {
-        return new ResponseEntity<User>(userService.add(userIn),HttpStatus.OK);
+        return new ResponseEntity<>(userService.add(userIn),HttpStatus.CREATED);
     }
-    @DeleteMapping
-    public ResponseEntity<?> delete(@PathVariable Integer id)
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<?> update(@PathVariable Integer id , @RequestBody UserIn userIn)
     {
-        return new ResponseEntity<User>(userService.delete(id),HttpStatus.OK);
+        return new ResponseEntity<User>(userService.update(id,userIn),HttpStatus.OK);
+    }
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Map<String,Object>> delete(@PathVariable Integer id)
+    {
+        return new ResponseEntity<Map<String,Object>>(userService.delete(id),HttpStatus.OK);
+    }
+    @GetMapping("/best")
+    public ResponseEntity<List<User>> getbest()
+    {
+        return  new ResponseEntity<List<User>>(userService.getbest(),HttpStatus.OK);
+    }
+    @GetMapping("/page")
+    public ResponseEntity<?> get_page()
+    {
+
     }
 }

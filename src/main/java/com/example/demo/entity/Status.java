@@ -1,12 +1,10 @@
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -14,16 +12,17 @@ import java.util.Set;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Table(name = "statuses")
 public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id ;
     @Column
-    private String name ;
+    private String status ;
     @Column
-    private Integer uutien ;
-    @OneToMany(cascade = CascadeType.ALL , mappedBy = "status")
-    private Set<User> users ;
+    private Integer level ;
+
+
 
 }
