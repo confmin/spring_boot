@@ -37,4 +37,5 @@ public class StatusController {
     {
         return new ResponseEntity<Respon>(statusService.update(id , statusIn),HttpStatus.OK) ;
     }
+
 }

@@ -3,19 +3,21 @@ package com.example.demo.service;
 import com.example.demo.dto.UserDto;
 import com.example.demo.entity.Status;
 import com.example.demo.entity.User;
-import com.example.demo.exception.NotFoundException;
 import com.example.demo.in.UserIn;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.repository.StatusRepository;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.respon.Respon;
+import com.example.demo.respon.ResponPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
-import java.awt.print.Pageable;
 import java.sql.Time;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,12 +48,22 @@ public class UserServiceImp implements UserService{
 
     @Override
     public User update(Integer id, UserIn userIn) {
-       User user = userRepository.findUserById(id);
-       user.setId(id);
-       Status status = user.getStatus();
-       user.setName(userIn.getName());
-       user.setStatus(statusRepository.getById(userIn.getStatus()));
-       user.setTime(Time.valueOf(LocalTime.now()));
+        Boolean checkstatus = userRepository.getIdUser(userIn.getStatus()).isPresent();
+        User user = userRepository.findUserById(id);
+        user.setId(id);
+        Status status = user.getStatus();
+        System.out.println(checkstatus+"adasd");
+       if (checkstatus)
+       {
+           user.setName(userIn.getName());
+           user.setStatus(statusRepository.getById(userIn.getStatus()));
+       }
+       else
+       {
+           user.setName(userIn.getName());
+           user.setStatus(statusRepository.getById(userIn.getStatus()));
+           user.setTime(Time.valueOf(LocalTime.now()));
+       }
        return  userRepository.save(user);
 
     }
@@ -74,7 +86,20 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public List<User> get_page(Pageable pageable) {
-        Page<User>
+    public ResponPage getpage(Integer pageNo, Integer pageSize) {
+        Sort sort = Sort.by("status","time").ascending();
+        Pageable pageable = PageRequest.of(pageNo,pageSize,sort);
+        Page<User>pageResult = userRepository.findAll(pageable);
+        return  new ResponPage(true,"done",pageResult.getTotalPages(),pageResult.toList());
     }
+
+    @Override
+    public User getuser(Integer id) {
+        User users = userRepository.findUserById(id);
+        return users ;
+    }
+
+
+
+
 }

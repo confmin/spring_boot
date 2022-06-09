@@ -57,7 +57,7 @@ public class StatusServiceImp implements StatusService{
         Status status = statusRepository.getById(id) ;
         status.setId(id);
         if (checkName && checkLevel){
-            return new Respon(false," cc ","");
+            return new Respon(false," failsse ","");
         }
         else {
             status.setStatus(statusIn.getStatus());
@@ -66,6 +66,15 @@ public class StatusServiceImp implements StatusService{
         }
         return new Respon(true,"Update suss",status);
     }
+
+//    @Override
+//    public Respon updateall(Integer id, StatusIn statusIn) {
+//        Status status = statusRepository.getById(id) ;
+//        status.setId(id);
+//        status.setStatus(statusRepository.findStatusById());
+//        status.setLevel(statusIn.getLevel());
+//        return null ;
+//    }
 
 
 }
