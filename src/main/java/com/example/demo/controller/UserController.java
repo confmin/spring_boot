@@ -28,10 +28,10 @@ public class UserController {
     {
         return new ResponseEntity<List<UserDto>>(userService.get(), HttpStatus.OK);
     }
-    @PostMapping
-    public ResponseEntity<?> add(@RequestBody UserIn userIn)
+    @PostMapping("/{limit}")
+    public ResponseEntity<?> add(@RequestBody UserIn userIn, @PathVariable Integer limit)
     {
-        return new ResponseEntity<>(userService.add(userIn),HttpStatus.CREATED);
+        return new ResponseEntity<ResponPage>(userService.add(userIn,limit),HttpStatus.CREATED);
     }
     @PutMapping(value = "/{id}")
     public ResponseEntity<?> update(@PathVariable Integer id , @RequestBody UserIn userIn)

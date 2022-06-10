@@ -15,7 +15,7 @@ import java.util.Map;
 @Service
 public interface UserService {
     List<UserDto> get();
-    User add(UserIn userIn);
+    ResponPage add(UserIn userIn, Integer limit);
     User update(Integer id , UserIn userIn);
     Map<String,Object> delete(Integer id);
     List<User> getbest();

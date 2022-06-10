@@ -39,31 +39,26 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public User add(UserIn userIn)  {
+    public ResponPage add(UserIn userIn, Integer limit)  {
         User user = UserMapper.map(userIn);
         user.setStatus(statusRepository.getById(userIn.getStatus()));
         user.setTime(Time.valueOf(LocalTime.now()));
-        return userRepository.save(user);
+        int countpage = userRepository.countIdPage(statusRepository.getByLevel(userIn.getStatus())) ;
+        int actpage = (int) Math.ceil(countpage/limit);
+        userRepository.save(user);
+        return new ResponPage(actpage);
     }
 
     @Override
     public User update(Integer id, UserIn userIn) {
-        Boolean checkstatus = userRepository.getIdUser(userIn.getStatus()).isPresent();
         User user = userRepository.findUserById(id);
         user.setId(id);
         Status status = user.getStatus();
-        System.out.println(checkstatus+"adasd");
-       if (checkstatus)
-       {
            user.setName(userIn.getName());
            user.setStatus(statusRepository.getById(userIn.getStatus()));
-       }
-       else
-       {
            user.setName(userIn.getName());
            user.setStatus(statusRepository.getById(userIn.getStatus()));
            user.setTime(Time.valueOf(LocalTime.now()));
-       }
        return  userRepository.save(user);
 
     }
@@ -87,10 +82,10 @@ public class UserServiceImp implements UserService{
 
     @Override
     public ResponPage getpage(Integer pageNo, Integer pageSize) {
-        Sort sort = Sort.by("status","time").ascending();
+        Sort sort = Sort.by("status","time").descending();
         Pageable pageable = PageRequest.of(pageNo,pageSize,sort);
-        Page<User>pageResult = userRepository.findAll(pageable);
-        return  new ResponPage(true,"done",pageResult.getTotalPages(),pageResult.toList());
+        Page<User>pageResult = userRepository.getPage(pageable);
+        return  new ResponPage(true,"done",pageResult.getNumber(),pageResult.getTotalPages(),pageResult.toList());
     }
 
     @Override

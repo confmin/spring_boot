@@ -52,18 +52,18 @@ public class StatusServiceImp implements StatusService{
         }
     @Override
     public Respon update(Integer id, StatusIn statusIn) {
+        Status status = statusRepository.getById(id) ;
         Boolean checkName = statusRepository.getName(statusIn.getStatus()).isPresent();
         Boolean checkLevel = statusRepository.getLevel(statusIn.getLevel()).isPresent();
-        Status status = statusRepository.getById(id) ;
-        status.setId(id);
-        if (checkName && checkLevel){
-            return new Respon(false," failsse ","");
-        }
-        else {
+        System.out.println("checkname"+checkName);
+        System.out.println("checklevel"+checkLevel);
+
+            if (checkLevel)
+            status.setId(id);
             status.setStatus(statusIn.getStatus());
             status.setLevel(statusIn.getLevel());
             statusRepository.save(status);
-        }
+
         return new Respon(true,"Update suss",status);
     }
 
