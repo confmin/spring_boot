@@ -20,4 +20,5 @@ public class UserIn {
     private  String name ;
    private Integer status ;
 
+
 }
