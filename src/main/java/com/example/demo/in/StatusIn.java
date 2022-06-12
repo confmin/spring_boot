@@ -17,4 +17,6 @@ public class StatusIn {
     private Integer id ;
     private String status ;
     private Integer level ;
+    private List<Integer> statusall  ;
+
 }

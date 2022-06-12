@@ -19,7 +19,7 @@ public interface UserRepository extends JpaRepository<User,Integer> {
     List<User> getUser();
     @Query(value = "SELECT * from users join statuses on statuses.id = users.id_status order by statuses.level , users.time limit 1",nativeQuery = true)
     List<User> getBest();
-    @Query(value = "SELECT * from users , statuses where users.id_status = statuses.id",nativeQuery = true)
+    @Query(value = "SELECT e from User e , Status q where e.status = q")
     Page<User> getPage(Pageable pageable);
     @Query(value = "SELECT count(users.id) from users join statuses on statuses.id = users.id_status WHERE statuses.level BETWEEN 1 and ?1",nativeQuery = true)
     Integer countIdPage(Integer level);

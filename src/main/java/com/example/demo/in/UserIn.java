@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -19,6 +20,5 @@ public class UserIn {
     private Integer id ;
     private  String name ;
    private Integer status ;
-
 
 }

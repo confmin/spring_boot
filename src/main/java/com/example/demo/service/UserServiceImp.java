@@ -82,7 +82,7 @@ public class UserServiceImp implements UserService{
 
     @Override
     public ResponPage getpage(Integer pageNo, Integer pageSize) {
-        Sort sort = Sort.by("status","time").descending();
+        Sort sort = Sort.by("status","time").ascending();
         Pageable pageable = PageRequest.of(pageNo,pageSize,sort);
         Page<User>pageResult = userRepository.getPage(pageable);
         return  new ResponPage(true,"done",pageResult.getNumber(),pageResult.getTotalPages(),pageResult.toList());

@@ -13,7 +13,7 @@ public interface StatusService {
     List<StatusDto> get() ;
     Respon add(StatusIn statusIn);
     Respon update(Integer id , StatusIn statusIn) ;
-//    Respon updateall(Integer id, StatusIn statusIn);
+  Respon updateall( StatusIn statusIn);
 
 
 }
