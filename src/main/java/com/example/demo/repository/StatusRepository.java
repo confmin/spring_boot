@@ -21,4 +21,6 @@ public interface StatusRepository extends JpaRepository<Status,Integer> {
     Optional<Status> getName(String name );
     @Query(value = "select e from Status e where e.level =?1")
     Optional<Status> getLevel(Integer id );
+    @Query(value = "select id from statuses", nativeQuery = true)
+    List<Integer> getAllById() ;
 }

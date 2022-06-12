@@ -37,5 +37,10 @@ public class StatusController {
     {
         return new ResponseEntity<Respon>(statusService.update(id , statusIn),HttpStatus.OK) ;
     }
+    @PostMapping("/update")
+    public ResponseEntity<?> updateall(@RequestBody StatusIn statusIn)
+    {
+        return new ResponseEntity<Respon>(statusService.updateall(statusIn),HttpStatus.OK);
+    }
 
 }

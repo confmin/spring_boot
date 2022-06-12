@@ -90,8 +90,18 @@ public class StatusServiceImp implements StatusService{
 
     @Override
     public Respon updateall(StatusIn statusIn) {
+
+        List<Integer> status = statusRepository.getAllById() ;
         List<Integer> store = statusIn.getStatusall() ;
-        System.out.printf("ss"+ store);
+        System.out.printf("ss"+ store.get(0));
+        System.out.printf("cc"+ status.get(0));
+        for (int i = 0 ; i < store.size();i++)
+        {
+            Status data = statusRepository.getById(status.get(i));
+            data.setId(status.get(i));
+            data.setLevel(store.get(i));
+            statusRepository.save(data);
+        }
         return new Respon(true,"done",store);
     }
 
