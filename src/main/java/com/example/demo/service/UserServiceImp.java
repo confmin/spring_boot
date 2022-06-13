@@ -45,6 +45,8 @@ public class UserServiceImp implements UserService{
         user.setTime(Time.valueOf(LocalTime.now()));
         int countpage = userRepository.countIdPage(statusRepository.getByLevel(userIn.getStatus())) ;
         int actpage = (int) Math.ceil(countpage/limit);
+        System.out.println(countpage+"ccsad");
+        System.out.println(limit+"wqeqwe");
         userRepository.save(user);
         return new ResponPage(actpage);
     }

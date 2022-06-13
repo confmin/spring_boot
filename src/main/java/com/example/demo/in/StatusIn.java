@@ -1,10 +1,7 @@
 package com.example.demo.in;
 
 import com.example.demo.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 import java.util.Set;
@@ -17,6 +14,6 @@ public class StatusIn {
     private Integer id ;
     private String status ;
     private Integer level ;
-    private List<Integer> statusall  ;
+ private List<StatusIn> statusall ;
 
 }

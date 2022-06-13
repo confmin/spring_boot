@@ -87,22 +87,22 @@ public class StatusServiceImp implements StatusService{
 
         return new Respon(true,"Update suss",status);
     }
-
     @Override
     public Respon updateall(StatusIn statusIn) {
 
-        List<Integer> status = statusRepository.getAllById() ;
-        List<Integer> store = statusIn.getStatusall() ;
-        System.out.printf("ss"+ store.get(0));
-        System.out.printf("cc"+ status.get(0));
-        for (int i = 0 ; i < store.size();i++)
+        List<StatusIn> status = statusIn.getStatusall();
+//        List<Integer> status = statusRepository.getAllById() ;
+//        List<Integer> store = statusIn.getStatusall() ;
+         System.out.printf("ss"+ status.get(1).getId());
+//        System.out.printf("cc"+ status.get(0));
+        for (int i = 0 ; i < status.size();i++)
         {
-            Status data = statusRepository.getById(status.get(i));
-            data.setId(status.get(i));
-            data.setLevel(store.get(i));
+            Status data = statusRepository.getById(status.get(i).getId());
+            data.setId(status.get(i).getId());
+            data.setLevel(status.get(i).getLevel());
             statusRepository.save(data);
         }
-        return new Respon(true,"done",store);
+       return new Respon(true,"done",null);
     }
 
 //    @Override

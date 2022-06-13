@@ -24,7 +24,7 @@ public class User {
     @Column
     private String name ;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "id_status")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Status status ;
